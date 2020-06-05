@@ -366,7 +366,6 @@ void mapa1 (){
 		}
 	}
 
-
 	system("clear");	
     return;
 }
