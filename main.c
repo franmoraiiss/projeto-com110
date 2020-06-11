@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 //DECLARAR FUNÇÕES
+
 void menu();
 void gameStart();
 void controles();
@@ -10,13 +11,16 @@ void mapa1();
 void mapa2();
 void menuPause();
 void historia();
+void gameOver();
 
 //VARIAVEIS GLOBAIS
+
 int coluna_atual = 1, linha_atual = 1;
 char escolha = '1';
 int vida = 3;
 int dinheiro = 0;
 int mapaAtual = 1;
+int continuarAvailable = 0;
 
 //INICIO DO PROGRAMA
 int main() {
@@ -29,6 +33,7 @@ int main() {
 //FAZ O MENU INICIAL
 void menu(){   
 
+	escolha = '1';
 	system("clear");
 
   	for(int i = 0 ; i < 36; i++){
@@ -74,9 +79,14 @@ void menu(){
 	switch(escolha){
 
 		case '1':
-			
+
+			continuarAvailable = 1;	
+
+            mapaAtual=1;
+			vida = 3;
+			dinheiro = 0;
+            //mapa1();
             historia();
-			gameStart();
 
             break;
 
@@ -84,6 +94,13 @@ void menu(){
 
            system("clear");
            printf("Continuar \n\n");
+
+			if(continuarAvailable == 0){
+				printf("Você ainda não iniciou um jogo!\n");
+				sleep(3);
+				menu();
+			}
+
 			//Continuar
 
             break;
@@ -256,6 +273,7 @@ void historia() {
 
 		case '0':
 			
+			mapaAtual = 1;
 			gameStart();
             break;
         
@@ -286,20 +304,19 @@ void gameStart(){
 
 
 	if(mapaAtual == 1){
+		
+		//Restaura a coluna e linha para posição inicial
+		coluna_atual = 1;
+		linha_atual = 1;
+
 		//1-> dinheiro = 0;
 		//1->vida = 3;
 		mapa1();
-
-		//Atualiza o mapaAtual para 2 e restaura a coluna e linha para posição inicial
-
-		mapaAtual = 2;
-		coluna_atual = 1;
-		linha_atual = 1;
 	}
 
-	
-
 	if(mapaAtual == 2){
+        coluna_atual = 1;
+        linha_atual = 1;
 		mapa2();
 	}
 	//mapa3();
@@ -353,7 +370,7 @@ void mapa1 (){
 	char movimento;
 
 
-	while (linha_atual != 17 || coluna_atual != 29) {
+	while (linha_atual != 17 || coluna_atual != 29 || dinheiro != 3) {
 
 		system("clear");
 
@@ -400,11 +417,6 @@ void mapa1 (){
 
 		printf("\n");
 
-        if(vida == 0) {
-            system("clear");
-            printf("GAME OVER!!!!\nBetter luck next time Padawan!\n");
-        }
-
         movimento = getchar();
 
         if ((movimento == 'w') || (movimento == 'W')) {
@@ -441,8 +453,6 @@ void mapa1 (){
             }
         }
 
-
-
         if ((movimento == 'a') || (movimento == 'A')) {
 
             coluna_atual = coluna_atual - 1;
@@ -454,6 +464,10 @@ void mapa1 (){
                // getchar(); getchar();
             }
         }
+
+		if(vida == 0){
+			gameOver();
+		}
 
         //Se enconstar no inimigo
         if (mapa1[linha_atual][coluna_atual] == 6) {
@@ -494,6 +508,10 @@ void mapa1 (){
 			menuPause();
 		}
 	}
+
+	mapaAtual = 2;
+	gameStart();
+
 	system("clear");	
     return;
 }
@@ -501,6 +519,8 @@ void mapa1 (){
 
 //CONSTROI O MAPA 2
 void mapa2 (){
+
+	mapaAtual = 2;
 
 	//O desenho do mapa é feito a partir dos simbolos da matriz
 	//Significado dos numeros:
@@ -581,11 +601,6 @@ void mapa2 (){
 
 		printf("\t\t⍟: %d", dinheiro);
 		printf("\n");
-
-        if(vida == 0) {
-            system("clear");
-            printf("GAME OVER!!!!\nBetter luck next time Padawan!\n");
-        }
 
         movimento = getchar();
 
@@ -717,5 +732,36 @@ void controles(){
 
 }
 
+void gameOver(){
 
+	char tmp;
+
+	while(tmp != '0'){
+
+		system("clear");
+
+		for(int i = 0; i < 36; i++){
+			printf("#");
+		} printf("\n");
+
+		printf("##                                ##\n");
+		printf("## \t\t   GAME OVER :(           ##\n");	   
+		printf("##                                ##\n");
+		printf("## \t Better luck next time!    ##\n");	
+		printf("## \t	                          ##\n");		
+
+		for(int i=0;i<36;i++){
+			printf("#");
+		}
+  
+		printf("\nPressione 0 para continuar\n");
+
+		scanf("%c", &tmp);
+	}
+
+	system("clear");
+
+	menu();
+	
+}
 //THE END
