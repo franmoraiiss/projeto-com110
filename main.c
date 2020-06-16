@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+// #include <unistd.h>
+// #include <curses.h>
+// #include <ncurses.h>
+
+//Para rodar o código sem erros, use o Replit, pois
+//ele foi feito e compilado na plataforma
+
+//Para movimentação do personagens digite a direção (W, A, S, D) 
+//e tecle enter para efetuar o movimento
 
 //DECLARAR FUNÇÕES
 
@@ -9,12 +17,12 @@ void gameStart();
 void controles();
 void mapa1();
 void mapa2();
+void mapa3();
 void menuPause();
 void historia();
 void gameOver();
 
 //VARIAVEIS GLOBAIS
-
 int coluna_atual = 1, linha_atual = 1;
 char escolha = '1';
 int vida = 3;
@@ -114,7 +122,24 @@ void menu(){
 
 		case '4':
             system("clear");      
-            printf("\nAté a próxima aventura !!\n\n");
+            for(int i = 0; i < 36; i++){
+                printf("#");
+            } printf("\n##");
+
+
+
+            for(int i = 0; i < 32; i++){
+                printf(" ");
+            } printf("## \n");
+
+            printf("## \t Até a próxima aventura !!    ##\n");	
+            printf("##                                ##\n");
+           
+
+
+            for(int i=0;i<36;i++){
+                printf("#");
+            }
 			exit(0);
 
             break;
@@ -319,7 +344,13 @@ void gameStart(){
         linha_atual = 1;
 		mapa2();
 	}
-	//mapa3();
+
+	if(mapaAtual == 3){
+        coluna_atual = 1;
+        linha_atual = 1;
+		mapa3();
+	}
+
 	//mapa4();
 	//mapa5();
 	return;
@@ -339,8 +370,6 @@ void mapa1 (){
 	//6- caveira
 	//7- dinheiro
 	//9- vida
-
-
 
 	int mapa1[20][30] = { 
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -414,6 +443,8 @@ void mapa1 (){
 		}
 
 		printf("\t\t⍟ : %d", dinheiro);
+
+		printf("\t\tWORLD: %d", mapaAtual);
 
 		printf("\n");
 
@@ -551,13 +582,13 @@ void mapa2 (){
 	1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,
 	1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 	1,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,5,5,1,1,1,1
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1
 	};
 	
 	int linha,coluna; 
 	char movimento;
 
-	while ((movimento != 'x') && (movimento != 'X')) {
+	while (linha_atual != 19 || coluna_atual != 25 || dinheiro != 4) {
 
 		system("clear");
 
@@ -581,8 +612,7 @@ void mapa2 (){
 				if (mapa2[linha][coluna] == 8)
 					printf("+");
 
-				if(mapa2[linha][coluna] == 5)
-					printf("  ");
+				
 
 				if(mapa2[linha][coluna]==6)  
 					printf("☠ ");
@@ -599,7 +629,10 @@ void mapa2 (){
 			printf("❤ ");
 		}
 
-		printf("\t\t⍟: %d", dinheiro);
+		printf("\t\t⍟ : %d", dinheiro);
+
+        printf("\t\tWORLD: %d", mapaAtual);
+		
 		printf("\n");
 
         movimento = getchar();
@@ -675,14 +708,210 @@ void mapa2 (){
 
             dinheiro++;        		
         }
+		
+		if((movimento == 'x') || (movimento == 'X')) {
+			menuPause();
+		}
 	}
 
 	system("clear");
+	mapaAtual = 3;
 
-	menuPause();
+	gameStart();
 
     return;
 }
+
+//CONSTROI O MAPA 3
+void mapa3 (){
+
+	mapaAtual = 3;
+
+	//O desenho do mapa é feito a partir dos simbolos da matriz
+	//Significado dos numeros:
+	//0- vazio
+	//1- parede
+	//5- saída
+	//6- caveira
+	//7- dinheiro
+	//9- vida
+
+	int mapa3[20][30] = { 
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,1,
+	1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,
+	1,0,6,0,1,0,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,
+	1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,7,1,0,0,0,1,0,0,0,0,0,0,0,1,
+	1,0,1,0,1,0,0,0,6,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,1,1,1,0,1,
+	1,0,1,9,1,0,0,0,9,6,1,0,0,0,1,0,1,1,0,1,0,1,0,0,0,1,0,1,0,1,
+	1,0,1,1,1,0,0,0,0,0,1,0,0,0,1,0,0,1,0,1,0,1,0,1,1,1,0,1,0,1,
+	1,0,0,6,0,0,0,1,1,1,1,0,0,0,1,1,0,1,0,1,0,1,0,1,0,0,0,1,0,1,
+	1,0,0,0,0,6,0,0,0,7,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,
+	1,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,
+	1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,
+	1,0,0,0,0,0,6,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,0,0,0,1,
+	1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
+	1,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,1,0,0,0,0,0,0,1,
+	1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,
+	1,0,1,0,1,0,0,6,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,
+	1,0,0,0,1,0,0,7,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,6,0,9,1,
+	1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+	};
+
+	int linha,coluna; 
+
+	char movimento;
+
+
+	while (linha_atual != 17 || coluna_atual != 29 || dinheiro != 3) {
+
+		system("clear");
+
+		for (linha=0;linha<20;linha++) {
+    		for (coluna=0;coluna<30;coluna++) {
+				if ((linha == linha_atual) && (coluna == coluna_atual)) {
+            		printf("♗ ");
+            		continue;
+         		}
+
+				if (mapa3[linha][coluna] == 0)
+					printf("  ");
+
+				if (mapa3[linha][coluna] == 1)
+					printf("✲✲");
+
+				if (mapa3[linha][coluna] == 7)
+					printf("⍟ ");
+
+				if (mapa3[linha][coluna] == 8)
+					printf("+");
+
+				if(mapa3[linha][coluna] == 5)
+					printf("→→→");
+
+				if(mapa3[linha][coluna]==6)  
+					printf("☠ ");
+
+                if(mapa3[linha][coluna]==9)  
+					printf("❤ ");     
+
+			}
+     	  	printf("\n");
+
+        }
+
+		printf("\t\tVIDAS: ");			
+
+		for(int i = 0; i < vida; i++){
+			printf("❤ ");
+		}
+
+		printf("\t\t⍟ : %d", dinheiro);
+
+        printf("\t\tWORLD: %d", mapaAtual);
+
+		printf("\n");
+
+        movimento = getchar();
+
+        if ((movimento == 'w') || (movimento == 'W')) {
+
+            linha_atual = linha_atual - 1;
+
+            /* Se o personagem se movimentar para a parede, ele retorna pra posição onde estava */
+
+            if ((mapa3[linha_atual][coluna_atual] != 0) && (mapa3[linha_atual][coluna_atual] != 6) && (mapa3[linha_atual][coluna_atual] != 9) && (mapa3[linha_atual][coluna_atual] != 7)) {
+
+                linha_atual = linha_atual + 1;
+                //getchar(); getchar();
+            }
+        }
+
+        if ((movimento == 's') || (movimento == 'S')) {
+            linha_atual = linha_atual + 1;
+
+            if ((mapa3[linha_atual][coluna_atual] != 0) && (mapa3[linha_atual][coluna_atual] != 6) && (mapa3[linha_atual][coluna_atual] != 9)&&(mapa3[linha_atual][coluna_atual] != 7)) {
+
+                linha_atual = linha_atual - 1;
+                //getchar(); getchar();
+            }
+        }
+
+        if ((movimento == 'd') || (movimento == 'D')) {
+
+            coluna_atual = coluna_atual + 1;
+
+            if ((mapa3[linha_atual][coluna_atual] != 0) && (mapa3[linha_atual][coluna_atual] != 6) && (mapa3[linha_atual][coluna_atual] != 9)&&(mapa3[linha_atual][coluna_atual] != 7)) {
+
+                coluna_atual = coluna_atual - 1;
+               // getchar(); getchar();
+            }
+        }
+
+        if ((movimento == 'a') || (movimento == 'A')) {
+
+            coluna_atual = coluna_atual - 1;
+
+            if ((mapa3[linha_atual][coluna_atual] != 0) && (mapa3[linha_atual][coluna_atual] != 6) && (mapa3[linha_atual][coluna_atual] != 9)&&(mapa3[linha_atual][coluna_atual] != 7)) {
+
+                coluna_atual = coluna_atual + 1;
+
+               // getchar(); getchar();
+            }
+        }
+
+		if(vida == 0){
+			gameOver();
+		}
+
+        //Se enconstar no inimigo
+        if (mapa3[linha_atual][coluna_atual] == 6) {
+            coluna_atual = 1, linha_atual = 1;
+            vida--;        		
+        }
+
+		//Se pegar o dinheiro
+         if (mapa3[linha_atual][coluna_atual] == 7) {
+
+			mapa3[linha_atual][coluna_atual] = 0;
+
+            coluna_atual++;
+			linha_atual++;
+			coluna_atual--;
+			linha_atual--;
+
+			dinheiro++;
+        }
+
+        //Se pegar o coração
+        if (mapa3[linha_atual][coluna_atual] == 9) {
+
+			mapa3[linha_atual][coluna_atual] = 0;
+            
+
+            coluna_atual++;
+			linha_atual++;
+			coluna_atual--;
+			linha_atual--;
+
+            if(vida<3){   
+            	vida++;
+			}	
+        }
+
+		if((movimento == 'x') || (movimento == 'X')) {
+			menuPause();
+		}
+	}
+
+	mapaAtual = 3;
+	gameStart();
+
+	system("clear");	
+    return;
+}
+// FINAL MAPA 3
 
 
 //EXIBE UM MENU DOS CONTROLES DO PERSONAGEM
@@ -747,7 +976,7 @@ void gameOver(){
 		printf("##                                ##\n");
 		printf("## \t\t   GAME OVER :(           ##\n");	   
 		printf("##                                ##\n");
-		printf("## \t Better luck next time!    ##\n");	
+		printf("## \t  Better luck next time!      ##\n");	
 		printf("## \t	                          ##\n");		
 
 		for(int i=0;i<36;i++){
