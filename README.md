@@ -10,10 +10,6 @@
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/franmoraiiss/projeto-com110">
-
-  <a href="https://www.linkedin.com/in/franmorais/">
-    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Francisco%20Morais-gree">
-  </a>
   
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/franmoraiiss/projeto-com110">
   
