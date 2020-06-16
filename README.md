@@ -36,9 +36,7 @@
 
 ## 👨🏻‍💻 About the project
 
-- <p style="color: red;">The game Padawan Adventures is a game in the shape of a maze, which the character must find the correct way to move to the next world, for that he must collect all the coins (⍟) existing on each map, collecting all he gets his ticket to the next world. In each world, in addition to the coins, there are also enemies (☠), which should be avoided, because once they are touched the character goes back to the beginning of the map and loses a life, and if the character loses all lives he loses the game. But during the game, as long as the number of lives is not zero, there are extra lives (❤) that can be collected and added to the current number of lives (maximum 3 lives).
- 
-The characters evolve at each level, following the base of the chess characters, initially the character is a pawn (♙), and follows an order until at the last level, when the objective is reached and the young Padawan advances on the last map he becomes a Jedi (♔), and has a free pass to collect the trophy (❄) and end the game.</p>
+- <p style="color: red;">The game Padawan Adventures is a game in the shape of a maze, which the character must find the correct way to move to the next world, for that he must collect all the coins (⍟) existing on each map, collecting all he gets his ticket to the next world. In each world, in addition to the coins, there are also enemies (☠), which should be avoided, because once they are touched the character goes back to the beginning of the map and loses a life, and if the character loses all lives he loses the game. But during the game, as long as the number of lives is not zero, there are extra lives (❤) that can be collected and added to the current number of lives (maximum 3 lives). The characters evolve at each level, following the base of the chess characters, initially the character is a pawn (♙), and follows an order until at the last level, when the objective is reached and the young Padawan advances on the last map he becomes a Jedi (♔), and has a free pass to collect the trophy (❄) and end the game.</p>
 
 ## 💻 Getting started
 
