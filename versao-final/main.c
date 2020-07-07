@@ -231,7 +231,7 @@ void menuPause(){
 
 	switch(escolha){
 		case '1':
-			gameStart();
+			return;
             break;
 
 		case '2':            
@@ -446,7 +446,6 @@ void mapa1 (){
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
@@ -497,13 +496,7 @@ void mapa1 (){
 
 				if (mapa1[linha][coluna] == 7)
 					printf("⍟ ");
-
-				if (mapa1[linha][coluna] == 8)
-					printf("+");
-
-				if(mapa1[linha][coluna] == 5)
-					printf("→→→");
-
+				
 				if(mapa1[linha][coluna]==6)  
 					printf("☠ ");
 
@@ -629,7 +622,6 @@ void mapa2 (){
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
@@ -680,10 +672,7 @@ void mapa2 (){
 
 				if (mapa2[linha][coluna] == 7)
 					printf(" ⍟");
-
-				if (mapa2[linha][coluna] == 8)
-					printf("+");				
-
+				
 				if(mapa2[linha][coluna]==6)  
 					printf("☠ ");
 
@@ -801,7 +790,6 @@ void mapa3() {
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
@@ -851,12 +839,6 @@ void mapa3() {
 
 				if (mapa3[linha][coluna] == 7)
 					printf("⍟ ");
-
-				if (mapa3[linha][coluna] == 8)
-					printf("+");
-
-				if(mapa3[linha][coluna] == 5)
-					printf("→→→");
 
 				if(mapa3[linha][coluna]==6)  
 					printf("☠ ");
@@ -985,7 +967,6 @@ void mapa4() {
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
@@ -1034,12 +1015,6 @@ void mapa4() {
 
 				if (mapa4[linha][coluna] == 7)
 					printf("⍟ ");
-
-				if (mapa4[linha][coluna] == 8)
-					printf("+");
-
-				if(mapa4[linha][coluna] == 5)
-					printf("→→→");
 
 				if(mapa4[linha][coluna]==6)  
 					printf("☠ ");
@@ -1168,7 +1143,6 @@ void mapa5() {
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
@@ -1219,12 +1193,6 @@ void mapa5() {
 
 				if (mapa5[linha][coluna] == 7)
 					printf("⍟ ");
-
-				if (mapa5[linha][coluna] == 8)
-					printf("+");
-
-				if(mapa5[linha][coluna] == 5)
-					printf("→→→");
 
 				if(mapa5[linha][coluna]==6)  
 					printf("☠ ");
@@ -1353,10 +1321,10 @@ void mapa6() {
 	//Significado dos numeros:
 	//0- vazio
 	//1- parede
-	//5- saída
 	//6- caveira
 	//7- player1.dinheiro
 	//9- player1.vida
+    //8- trofeu
 
 	int mapa6[20][30] = { 
 	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -1406,10 +1374,6 @@ void mapa6() {
 
 				if (mapa6[linha][coluna] == 8)
 					printf("🏆");
-
-				if(mapa6[linha][coluna] == 5)
-					printf("+");
-
 
 				if(mapa6[linha][coluna] == 6)  
 					printf("☠ ");
